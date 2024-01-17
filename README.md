@@ -2,6 +2,9 @@
 
 一个能让Protobuf在蓝图中使用的插件
 
+- UE 5.3
+- Protobuf 3.19
+
 ------
 
 ## 支持类型
@@ -62,6 +65,25 @@
 7. 之后就可以调用函数进行序列化和反序列化等操作了( •̀ ω •́ )✧
 
    - 相关函数在`Protobuf|Util`分类下
+
+------
+
+## 工具
+
+位于如下路径：
+
+```c++
+PROJECT_DIR/Plugins/ProtobufBlueprintSp/Content/Utils
+```
+
+![image-20240117231047564](README.assets/image-20240117231047564.png)
+
+- **AutoCompileProto**
+  - 是后面2个的整合版，适用于新定义了`.proto`文件，想要编译并注册的场景
+- **CompileProtoEUB**
+  - 只提供编译`.proto`文件的功能
+- **ProtoRegisterMessageEUB**
+  - 只提供消息注册的功能
 
 ------
 
