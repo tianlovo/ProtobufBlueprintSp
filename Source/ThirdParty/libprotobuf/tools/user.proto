@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package User;
+option go_package = "./User";
+
+
+message Address {
+	string address = 1;
+	string postal_code = 2;
+}
+
+enum GENDER_ENUM {
+	GE_MALE=0;
+	GE_FEMALE=1;
+}
+
+message RegisterRequest {
+	string name = 1;
+	GENDER_ENUM gender = 2;
+	repeated Address address = 3;
+}
+
+message RegisterResponse {
+	uint64 id = 1;
+	string msg = 2;
+}
+
+message QueryRequest {
+	uint64 id = 1;
+}
+
+message QueryResponse {
+	string name = 1;
+	GENDER_ENUM gender = 2;
+	repeated Address address = 3;
+}
+
+service UserService {
+	rpc Register (RegisterRequest) returns (RegisterResponse);
+	rpc Query(QueryRequest) returns(QueryResponse);
+}
+

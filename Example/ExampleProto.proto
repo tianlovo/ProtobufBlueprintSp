@@ -1,0 +1,25 @@
+syntax = "proto3";
+package ProtobufBlueprintSp;
+
+import "ExampleSubProto.proto";
+
+message ExampleProto {
+    bool bool_val = 1;
+    int32 int32_val = 2;
+    int64 int64_val = 3;
+    double double_val = 4;
+    string string_val = 5;
+    bytes bytes_val = 6;
+    ExampleSubProto sub_proto = 7;
+    
+    repeated bool bool_vals = 8;
+    repeated int32 int32_vals = 9;
+    repeated int64 int64_vals = 10;
+    repeated double double_vals = 11;
+    repeated string string_vals = 12;
+    repeated ExampleSubProto sub_protos = 13;
+    
+    ///----- Not Support Type -----
+    // map<>
+    // repeated bytes
+}

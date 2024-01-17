@@ -1,0 +1,11 @@
+syntax = "proto3";
+package ProtobufBlueprintSp;
+
+message ExampleSubProto {
+    int32 int32_val = 1;
+    string string_val = 2;
+    bytes bytes_val = 3;
+    repeated int64 int64_vals = 4;
+    repeated double double_vals = 5;
+    repeated string string_vals = 6;
+}
