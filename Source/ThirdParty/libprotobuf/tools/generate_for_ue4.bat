@@ -1,1 +1,0 @@
-py generate_for_ue4.py --proto_input "D:\GameDevelop\Mhuo\MhuoGame\MhuoModules\Plugins\ProtobufBlueprintSp\Example" --cpp_out "D:\GameDevelop\Mhuo\MhuoGame\MhuoModules\Plugins\ProtobufBlueprintSp\Source\ProtobufBlueprintSp\Private\ProtoGenExample"

@@ -104,7 +104,7 @@ def build_proto_file(protoc, proto_path, proto_file, cpp_out):
 	return ret
 
 if __name__ == "__main__":
-	parser = ArgumentParser(description="Compile Proto Files for UE4")
+	parser = ArgumentParser(description="Compile Proto Files for UE")
 	parser.add_argument("--proto_input", required=True, help="proto file or path will be processed.")
 	parser.add_argument("--cpp_out", help="the cpp output directory for cpp generator.")
 

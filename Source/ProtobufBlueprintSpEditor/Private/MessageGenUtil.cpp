@@ -3,6 +3,8 @@
 
 #include "MessageGenUtil.h"
 
+#include "HAL/PlatformProcess.h"
+
 TMap<FString, int32> UMessageGenUtil::ReadMessageIdentifies(const FString& IdentifiesPath)
 {
 	TMap<FString, int32> ResultMap;
@@ -119,4 +121,47 @@ void UMessageGenUtil::WriteRegisteredMessages(const TArray<FString>& MessageArra
 
 	// 清空文件内容并将字符串内容写入文件
 	FFileHelper::SaveStringToFile(FileContent, *RegisteredMessagesPath, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM);
+}
+
+bool UMessageGenUtil::RunPyToCompileProto(const FString& PythonExecutable, const FString& PyPath,
+	const FString& ProtoDir, const FString& CppOut,
+	FString& OutStdOut, FString& OutStdErr)
+{
+	const FString CommandLineArgs = FString::Printf(TEXT("--proto_input=%s --cpp_out=%s"),
+		*ProtoDir, *CppOut);
+	const FString ExeCommandLine = FString::Printf(TEXT("\"%s\" \"%s\""),
+		*PythonExecutable, *PyPath);
+
+	FString OutStdOutStr;
+	FString OutStdErrStr;
+	
+	int32 ReturnCode;
+	FPlatformProcess::ExecProcess(*ExeCommandLine, *CommandLineArgs, &ReturnCode, &OutStdOutStr, &OutStdErrStr);
+
+	OutStdOut = OutStdOutStr;
+	OutStdErr = OutStdErrStr;
+	return ReturnCode == 0;
+}
+
+TArray<FString> UMessageGenUtil::GetPbFileNames(const FString& Dir, const bool bIsCC)
+{
+	// 创建目录迭代器
+	IFileManager& FileManager = IFileManager::Get();
+
+	// 设置目录路径
+	const FString SearchPath = FPaths::Combine(Dir, bIsCC ? TEXT("*.pb.cc") : TEXT("*.pb.h"));
+
+	// 获取所有以 .pb.h 结尾的文件
+	TArray<FString> PBFiles;
+	FileManager.FindFiles(PBFiles, *SearchPath, true, false);
+
+	// 遍历文件
+	TArray<FString> Results;
+	for (const FString& FilePath : PBFiles)
+	{
+		// 获取文件名称（不带后缀）
+		Results.Add(FPaths::GetBaseFilename(FilePath).Replace(TEXT(".pb"), TEXT("")));
+	}
+
+	return Results;
 }
