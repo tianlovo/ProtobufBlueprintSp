@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Author's Github: https://github.com/tianlovo
 
 
 #include "MessageGenUtil.h"
