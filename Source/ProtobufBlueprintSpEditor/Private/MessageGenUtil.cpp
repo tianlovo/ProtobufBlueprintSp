@@ -47,7 +47,7 @@ void UMessageGenUtil::WriteMessageIdentifies(const TMap<FString, int32>& Message
 
 	// 将额外的结构内容加入字符串
 	FileContent += FString::Printf(TEXT("#pragma once\n\n"));
-	FileContent += FString::Printf(TEXT("class FMessageIdentifies\n"));
+	FileContent += FString::Printf(TEXT("class PROTOBUFBLUEPRINTSP_API FMessageIdentifies\n"));
 	FileContent += FString::Printf(TEXT("{\n"));
 	FileContent += FString::Printf(TEXT("public:\n"));
 
@@ -95,7 +95,7 @@ void UMessageGenUtil::WriteRegisteredMessages(const TArray<FString>& MessageArra
 	}
 
 	// 生成RegisteredMessages的内容
-	FileContent += FString::Printf(TEXT("\nclass FRegisteredMessages\n"));
+	FileContent += FString::Printf(TEXT("\nclass PROTOBUFBLUEPRINTSP_API FRegisteredMessages\n"));
 	FileContent += FString::Printf(TEXT("{\n"));
 	FileContent += FString::Printf(TEXT("public:\n"));
 	FileContent += FString::Printf(

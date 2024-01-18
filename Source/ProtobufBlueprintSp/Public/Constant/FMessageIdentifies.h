@@ -1,6 +1,6 @@
 #pragma once
 
-class FMessageIdentifies
+class PROTOBUFBLUEPRINTSP_API FMessageIdentifies
 {
 public:
 };
