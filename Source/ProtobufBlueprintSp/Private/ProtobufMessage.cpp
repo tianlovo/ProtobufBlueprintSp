@@ -56,8 +56,11 @@ UProtobufMessage* UProtobufMessage::CreateMessage(const TSubclassOf<UProtobufMes
 
 TArray<uint8> UProtobufMessage::ToProtobufBytes(const UProtobufMessage* Message)
 {
-	// 字典没有此CmdId直接返回空字节数组
 	TArray<uint8> ProtobufBytes;
+	if (!Message) return ProtobufBytes;
+
+	// 字典没有此CmdId直接返回空字节数组
+	if (!FRegisteredMessages::RegisteredMessages.Contains(Message->Identify)) return ProtobufBytes;
 	const auto FoundMessage = FRegisteredMessages::RegisteredMessages[Message->Identify].Get();
 	if (!FoundMessage) return ProtobufBytes;
 
